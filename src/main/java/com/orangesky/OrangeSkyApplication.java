@@ -1,6 +1,7 @@
 package com.orangesky;
 
-import com.orangesky.services.HelloWorldService;
+import com.orangesky.services.HelloWorldController;
+import com.orangesky.services.ProductController;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Bootstrap;
@@ -21,7 +22,8 @@ public class OrangeSkyApplication extends Application<Configuration> {
     }
 
     public void run(Configuration configuration, Environment environment) throws Exception {
-        environment.jersey().register(new HelloWorldService());
+        environment.jersey().register(new HelloWorldController());
+        environment.jersey().register(new ProductController());
     }
 
     public static void main(String[] args) throws Exception {

@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
  * @author RaminderSingh
  */
 @Path("/test")
-public class HelloWorldService {
+public class HelloWorldController {
 
     @GET
     public String greetings(){
