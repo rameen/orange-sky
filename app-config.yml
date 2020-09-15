@@ -1,0 +1,4 @@
+product_details_service:
+  host: "http://redsky.target.com/v2/pdp/tcin/"
+
+
