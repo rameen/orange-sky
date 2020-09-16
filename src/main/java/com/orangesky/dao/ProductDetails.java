@@ -1,5 +1,7 @@
 package com.orangesky.dao;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * @author RaminderSingh
  */
@@ -7,6 +9,7 @@ package com.orangesky.dao;
 public class ProductDetails {
     private Integer id;
     private String title;
+    @JsonProperty("current_price")
     private ProductPrice priceDetails;
 
 

@@ -1,0 +1,18 @@
+package com.orangesky.exceptions;
+
+import org.eclipse.jetty.http.HttpStatus;
+
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
+
+/**
+ * @author RaminderSingh
+ */
+public class ResourceNotFoundException extends WebApplicationException {
+
+    public ResourceNotFoundException() {
+        super("Resource Not Found", HttpStatus.NOT_FOUND_404);
+    }
+
+
+}
