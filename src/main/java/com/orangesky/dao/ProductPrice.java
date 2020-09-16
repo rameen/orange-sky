@@ -4,22 +4,30 @@ package com.orangesky.dao;
  * @author RaminderSingh
  */
 public class ProductPrice {
-    private float value;
+    private int id;
+    private double value;
     private String currency;
 
-    public ProductPrice() {
-    }
 
-    public ProductPrice(float value, String currency) {
+    public ProductPrice(int id,double value, String currency) {
+        this.id = id;
         this.value = value;
         this.currency = currency;
     }
 
-    public float getValue() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getValue() {
         return value;
     }
 
-    public void setValue(float value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
@@ -30,6 +38,4 @@ public class ProductPrice {
     public void setCurrency(String currency) {
         this.currency = currency;
     }
-
-
 }

@@ -1,6 +1,9 @@
 package com.orangesky;
 
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
 import com.orangesky.configurations.AppConfigurations;
+import com.orangesky.managed.MongoManaged;
 import com.orangesky.services.HelloWorldController;
 import com.orangesky.services.ProductController;
 import io.dropwizard.Application;
@@ -23,8 +26,13 @@ public class OrangeSkyApplication extends Application<AppConfigurations> {
     }
 
     public void run(AppConfigurations configuration, Environment environment) throws Exception {
+        LOGGER.info(" mongo config " + configuration.getMongoDbConfig().getMongoHost());
+        MongoClient mongoClient = new MongoClient(configuration.getMongoDbConfig().getMongoHost(),configuration.getMongoDbConfig().getMongoPort());
+        MongoDatabase mongoDatabase = mongoClient.getDatabase(configuration.getMongoDbConfig().getMongoDB());
+        MongoManaged mongoManaged = new MongoManaged(mongoClient);
+        environment.lifecycle().manage(mongoManaged);
         environment.jersey().register(new HelloWorldController());
-        environment.jersey().register(new ProductController(configuration.getProductDetailsConfiguration(),new JerseyClientBuilder().build()));
+        environment.jersey().register(new ProductController(configuration.getProductDetailsConfiguration(),new JerseyClientBuilder().build(),mongoDatabase));
 
     }
 

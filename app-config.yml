@@ -1,4 +1,9 @@
 product_details_service:
   host: "http://redsky.target.com/v2/pdp/tcin/"
 
+mongo_config:
+  mongoHost : localhost
+  mongoPort : 27017
+  mongoDB : test
+
 

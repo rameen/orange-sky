@@ -1,6 +1,9 @@
 package com.orangesky.services;
 
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.orangesky.configurations.ProductDetailsConfiguration;
+import org.bson.Document;
 import org.glassfish.jersey.client.JerseyClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,15 +24,16 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class ProductController {
 
+    private  static final String PRODUCTS_COLLECTION = "products";
     private final ProductDetailsConfiguration productDetailsConfiguration;
     private IProductService productService;
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
-    public ProductController(ProductDetailsConfiguration productDetailsConfiguration, JerseyClient httpClient) {
+    public ProductController(ProductDetailsConfiguration productDetailsConfiguration, JerseyClient httpClient, MongoDatabase mongoDatabase) {
 
         this.productDetailsConfiguration = productDetailsConfiguration;
         LOGGER.info("product details config " + this.productDetailsConfiguration.getHost());
-        this.productService = new ProductServiceImpl(httpClient,productDetailsConfiguration);
+        this.productService = new ProductServiceImpl(httpClient,productDetailsConfiguration,mongoDatabase.getCollection(PRODUCTS_COLLECTION));
     }
 
 
