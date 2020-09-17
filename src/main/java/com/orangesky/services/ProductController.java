@@ -1,17 +1,14 @@
 package com.orangesky.services;
 
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.orangesky.configurations.ProductDetailsConfiguration;
-import org.bson.Document;
+import com.orangesky.dao.ProductPrice;
+import com.orangesky.dao.ProductPriceRequest;
 import org.glassfish.jersey.client.JerseyClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -20,7 +17,7 @@ import javax.ws.rs.core.Response;
  * @author RaminderSingh
  */
 
-@Path("/product")
+@Path("/products")
 @Produces(MediaType.APPLICATION_JSON)
 public class ProductController {
 
@@ -43,4 +40,13 @@ public class ProductController {
 
         return Response.ok(productService.fetchProductDetails(id)).build();
     }
+
+    @POST
+    public Response updatePrice(ProductPriceRequest productPriceRequest){
+        LOGGER.info(" price request " + productPriceRequest );
+        productService.updatePriceDetails(productPriceRequest);
+        return Response.ok(productPriceRequest).build();
+    }
+
+
 }

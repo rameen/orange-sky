@@ -3,7 +3,6 @@ package com.orangesky.exceptions;
 import org.eclipse.jetty.http.HttpStatus;
 
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
 
 /**
  * @author RaminderSingh
