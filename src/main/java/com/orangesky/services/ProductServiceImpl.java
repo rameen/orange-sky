@@ -9,7 +9,6 @@ import com.orangesky.dao.ProductPrice;
 import com.orangesky.dao.ProductPriceRequest;
 import com.orangesky.dao.internal.ProductTitle;
 import com.orangesky.exceptions.ResourceNotFoundException;
-import com.orangesky.services.database.MongoService;
 import com.orangesky.services.internal.ProductDetailsService;
 import org.bson.Document;
 import org.bson.conversions.Bson;
