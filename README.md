@@ -2,7 +2,7 @@
 The retail app exposes a set of api to fetch products details, which includes title
 and price.
 
-##Software Stack
+## Software Stack
 * Dropwizard - 2.0.0
   - The Dropwizard framework provides the basic skeleton for building the backend application.
 * MongoDB - 4.0.0
@@ -12,8 +12,8 @@ and price.
 * Apache Maven - 3.6.1
 * Java Version - JDK 1.8
 
-##API
-####Fetch Price Details:
+## API
+#### Fetch Price Details:
 This service tries to call target endpoint (redsky) for product title and retrieves price information from the MongoDB.
 The response for product id `12345679` for title has been hardcoded.It assumes that price information is present in the DB.  
 
