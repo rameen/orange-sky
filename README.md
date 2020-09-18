@@ -1,6 +1,6 @@
 # Retail App Store
 The retail app exposes a set of api to fetch products details, which includes title
-and price.
+and price and update price details
 
 ## Software Stack
 * Dropwizard - 2.0.0
@@ -10,7 +10,7 @@ and price.
 
 * Junit- 4.13
 * Apache Maven - 3.6.1
-* Java Version - JDK 1.8
+* Java Version - 8
 
 ## Build Steps
 Go the source code directory and run following commands
