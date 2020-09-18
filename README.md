@@ -12,6 +12,15 @@ and price.
 * Apache Maven - 3.6.1
 * Java Version - JDK 1.8
 
+## Build Steps
+Go the source code directory
+
+`mvn clean install`
+
+`java -jar target/orange-sky-1.0-SNAPSHOT.jar server app-config.yml`
+
+These commands will start your application at 8080 port.
+
 ## API
 #### Fetch Price Details:
 This service tries to call target endpoint (redsky) for product title and retrieves price information from the MongoDB.
@@ -22,6 +31,7 @@ Request :
 GET /products/{id}
 
 Response
+
 `status : 200`
 
 `{
@@ -33,7 +43,7 @@ Response
     }
 }`
 
-####Update Price Details:
+#### Update Price Details:
 This service updates the prices of an existing product in the MongoDB.It is only responsible for updating the price of an exsiting product.
 Request:
 
@@ -86,6 +96,14 @@ Response:
      "code": 500/404,
      "message": "Something went wrong/Resource Not Found"
  }`
+ 
+ #### Test Cases
+ To run the test cases execute the following command
+ `mvn test`
+ 
+ ###### Test Coverage till date.
+ ![](test-coverage/testcoverage.png)
+ 
  
 
 
