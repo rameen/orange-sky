@@ -31,7 +31,7 @@ public class OrangeSkyApplication extends Application<AppConfigurations> {
         MongoDatabase mongoDatabase = mongoClient.getDatabase(configuration.getMongoDbConfig().getMongoDB());
         MongoManaged mongoManaged = new MongoManaged(mongoClient);
         environment.lifecycle().manage(mongoManaged);
-        environment.healthChecks().register("Health Check Api",new ApplicationHealthCheck());
+        environment.healthChecks().register("data",new ApplicationHealthCheck());
         environment.jersey().register(new HelloWorldController());
         environment.jersey().register(new ProductController(configuration.getProductDetailsConfiguration(),new JerseyClientBuilder().build(),mongoDatabase));
 
