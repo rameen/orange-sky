@@ -13,7 +13,7 @@ and price.
 * Java Version - JDK 1.8
 
 ## Build Steps
-Go the source code directory
+Go the source code directory and run following commands
 
 `mvn clean install`
 
@@ -81,13 +81,8 @@ Response:
          "message": "The Orange Sky Application is healthy ",
          "duration": 0,
          "timestamp": "2020-09-18T14:07:19.581+05:30"
-     },
-     "deadlocks": {
-         "healthy": true,
-         "duration": 0,
-         "timestamp": "2020-09-18T14:07:19.582+05:30"
-     }
- }`
+     } 
+}`
  
 #### Error Message Structure
 `status: http status error code`
@@ -97,6 +92,7 @@ Response:
      "message": "Something went wrong/Resource Not Found"
  }`
  
+ 
  #### Test Cases
  To run the test cases execute the following command
  `mvn test`
@@ -104,7 +100,8 @@ Response:
  ###### Test Coverage till date.
  ![](test-coverage/testcoverage.png)
  
- 
+ #### Postman Collection
+ The collection can be accessed [here](https://www.getpostman.com/collections/d260e0bfae44b349fbd7)
 
 
 
