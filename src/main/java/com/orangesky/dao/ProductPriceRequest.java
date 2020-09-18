@@ -1,5 +1,7 @@
 package com.orangesky.dao;
 
+import java.util.Objects;
+
 /**
  * @author RaminderSingh
  */
@@ -44,5 +46,20 @@ public class ProductPriceRequest {
         sb.append(", currency='").append(currency).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductPriceRequest that = (ProductPriceRequest) o;
+        return Float.compare(that.price, price) == 0 &&
+                productId.equals(that.productId) &&
+                currency.equals(that.currency);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, price, currency);
     }
 }

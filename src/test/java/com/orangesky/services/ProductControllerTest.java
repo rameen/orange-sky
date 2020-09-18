@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.orangesky.OrangeSkyApplication;
 import com.orangesky.configurations.AppConfigurations;
 import com.orangesky.dao.ProductDetails;
+import com.orangesky.dao.ProductPriceRequest;
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 import org.eclipse.jetty.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.client.Client;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 
 import static org.junit.Assert.assertEquals;
@@ -28,7 +30,7 @@ public class ProductControllerTest {
 
     @ClassRule
     public static final DropwizardAppRule<AppConfigurations> EXT = new DropwizardAppRule<>(OrangeSkyApplication.class, ResourceHelpers.resourceFilePath("app-config-test.yml"));
-    public static final int DUMMY_PRODUCT_ID = 12345679;
+    public static final Integer DUMMY_PRODUCT_ID = 12345679;
 
     private String localhost = "http://localhost:%d";
     private String productsPath ="/products/";
@@ -92,6 +94,39 @@ public class ProductControllerTest {
 
     }
 
+    @Test
+    public void testUpdateProductPrice200Status() throws  JsonProcessingException{
+        ProductPriceRequest productPriceRequest = new ProductPriceRequest();
+        productPriceRequest.setProductId(DUMMY_PRODUCT_ID);
+        productPriceRequest.setPrice(400);
+        productPriceRequest.setCurrency("USD");
+        Response response = client.target(String.format(localhost + productsPath, EXT.getLocalPort())).request().post(Entity.json(productPriceRequest));
+        assertEquals(HttpStatus.OK_200,response.getStatus());
+
+    }
+
+    @Test
+    public void testUpdateProductPrice404() throws  JsonProcessingException{
+        ProductPriceRequest productPriceRequest = new ProductPriceRequest();
+        productPriceRequest.setProductId(345);
+        productPriceRequest.setPrice(400);
+        productPriceRequest.setCurrency("USD");
+        Response response = client.target(String.format(localhost + productsPath, EXT.getLocalPort())).request().post(Entity.json(productPriceRequest));
+        assertEquals(HttpStatus.NOT_FOUND_404,response.getStatus());
+
+    }
+    @Test
+    public void testUpdatProductPriceValues() throws  JsonProcessingException{
+        float price = 400;
+        ProductPriceRequest productPriceRequest = new ProductPriceRequest();
+        productPriceRequest.setProductId(DUMMY_PRODUCT_ID);
+        productPriceRequest.setPrice(price);
+        productPriceRequest.setCurrency("USD");
+        ProductPriceRequest productPriceResponse = client.target(String.format(localhost + productsPath, EXT.getLocalPort())).request().post(Entity.json(productPriceRequest),ProductPriceRequest.class);
+        assertNotNull(productPriceResponse);
+        assertEquals(productPriceRequest,productPriceResponse);
+
+    }
 
     private ProductDetails getProductDetails(Integer productId) {
         return client.target(
@@ -105,6 +140,9 @@ public class ProductControllerTest {
                 .request()
                 .get();
     }
+
+
+
     @After
     public void tearDown() {
         client = null;
