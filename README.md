@@ -20,6 +20,7 @@ Go the source code directory and run following commands
 `java -jar target/orange-sky-1.0-SNAPSHOT.jar server app-config.yml`
 
 These commands will start your application at 8080 port.
+Start MongoDB in your local setup
 
 ## API
 #### Fetch Price Details:
